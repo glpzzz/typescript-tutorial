@@ -15,12 +15,24 @@ console.log(me);
 greetPerson(me);
 let someone;
 import { Invoice } from "./classes/Invoice.js";
+import { Payment } from "./classes/Payment.js";
+let docOne;
+let docTwo;
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payment('mario', 'plumbing work', 200);
 const inv1 = new Invoice('Mario', 'Mushroom', 2000);
 const inv2 = new Invoice('Luigi', 'Work on Luigi website', 3000);
-let invoices = [];
-invoices.push(inv1);
-invoices.push(inv2);
-invoices.forEach(inv => console.log(inv.client, inv.amount, inv.format()));
+const pay1 = new Payment('Toad', 'Mushroom', 2000);
+const pay2 = new Payment('Yoshi', 'Work on Luigi website', 3000);
+let docs = [];
+docs.push(inv1);
+docs.push(inv2);
+docs.push(pay1);
+docs.push(pay2);
+docs.push(docOne);
+docs.push(docTwo);
+console.log(docs);
+docs.forEach(item => console.log(item.format()));
 const anchor = document.querySelector('a');
 console.log(anchor.href);
 // we can check with the if or use the ! after the selector
@@ -36,5 +48,16 @@ const fDetails = document.querySelector('#details');
 const fAmount = document.querySelector('#amount');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(fType.value, fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+    let doc;
+    if (fType.value === 'invoice') {
+        doc = new Invoice(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+    }
+    else if (fType.value === 'payment') {
+        doc = new Payment(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+    }
+    else {
+        throw new Error('Type not implemented');
+    }
+    docs.push(doc);
+    console.log(docs);
 });

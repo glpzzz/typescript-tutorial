@@ -29,18 +29,33 @@ greetPerson(me);
 let someone: IsPerson;
 
 import {Invoice} from "./classes/Invoice.js";
+import {Payment} from "./classes/Payment.js";
+import {HasFormatter} from "./interfaces/HasFormatter";
+
+let docOne: HasFormatter;
+let docTwo: HasFormatter;
+
+docOne = new Invoice('yoshi', 'web work', 250);
+docTwo = new Payment('mario', 'plumbing work', 200);
 
 const inv1 = new Invoice('Mario', 'Mushroom', 2000);
 const inv2 = new Invoice('Luigi', 'Work on Luigi website', 3000);
 
-let invoices: Invoice[] = [];
-invoices.push(inv1);
-invoices.push(inv2);
+const pay1 = new Payment('Toad', 'Mushroom', 2000);
+const pay2 = new Payment('Yoshi', 'Work on Luigi website', 3000);
 
-invoices.forEach(inv => console.log(
-    inv.client,
-    inv.amount,
-    inv.format(),
+let docs: HasFormatter[] = [];
+docs.push(inv1);
+docs.push(inv2);
+docs.push(pay1);
+docs.push(pay2);
+docs.push(docOne);
+docs.push(docTwo);
+
+console.log(docs);
+
+docs.forEach(item => console.log(
+    item.format(),
 ));
 
 const anchor = document.querySelector('a')!;
@@ -63,10 +78,16 @@ const fAmount = document.querySelector('#amount') as HTMLInputElement;
 
 form.addEventListener('submit', (e: Event) => {
     e.preventDefault();
-    console.log(
-        fType.value,
-        fToFrom.value,
-        fDetails.value,
-        fAmount.valueAsNumber
-    );
+
+    let doc: HasFormatter;
+    if (fType.value === 'invoice') {
+        doc = new Invoice(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+    } else if (fType.value === 'payment') {
+        doc = new Payment(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+    } else {
+        throw new Error('Type not implemented');
+    }
+
+    docs.push(doc);
+    console.log(docs);
 })
