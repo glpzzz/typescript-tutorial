@@ -12,12 +12,16 @@ const fAmount = document.querySelector('#amount');
 const list = new ListTemplate(document.querySelector('ul'));
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    // now using tuples to init objects
+    let values = [
+        fToFrom.value, fDetails.value, fAmount.valueAsNumber,
+    ];
     let doc;
     if (fType.value === 'invoice') {
-        doc = new Invoice(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+        doc = new Invoice(...values);
     }
     else if (fType.value === 'payment') {
-        doc = new Payment(fToFrom.value, fDetails.value, fAmount.valueAsNumber);
+        doc = new Payment(...values);
     }
     else {
         throw new Error('Type not implemented');
@@ -54,3 +58,11 @@ const docFour = {
     data: ['bread', 'wine', 'milk']
 };
 console.log(docThree, docFour);
+// TUPLES
+// regular array
+let arr = ['ryu', 25, true];
+arr[0] = false; // legal created as mixed array
+// now with tuples, positions in array have a fixed type now
+let tup = ['ryu', 30, false];
+// tup[0] = 123; // illegal, tup[0] have to be a string
+console.log(tup);
