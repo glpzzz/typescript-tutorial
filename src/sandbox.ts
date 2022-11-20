@@ -1,16 +1,14 @@
-// use type to define alias of union types or object structures
-type StringOrNum = string | number;
-type objWithName = { name: string, uid: StringOrNum };
+let greet: Function;
 
-const logDetails = (uid: StringOrNum, item: string) => {
-    console.log(`${item} has a uid of ${uid}`);
-}
+// function signature example 1
+let greet1: () => void;
 
-const greet = (user: objWithName) => {
-    console.log(`${user.name} says hello.`);
-}
+// function signature example 2
+let greet2: (a: string, b: string) => void;
 
-const greetAgain = (user: objWithName) => {
-    console.log(user);
-}
+// function signature example 3
+let greet3: (a: string, b: string) => string;
 
+// invalid
+// greet3 = (m: number, n: number) => m + n;
+// console.log(greet3(1,2));
