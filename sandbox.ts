@@ -1,21 +1,43 @@
-// creating variables
-let character = 'Mario';
-let age = 30;
-let isBlackBelt = false;
+// ARRAYS
+let names = ['luigi', 'mario', 'yoshi'];
 
-// variables types get defined by the type of the value first assigned
-// type can't be changed after that
-// new value can be assigned if not const
+console.log(names);
 
-console.log(character, age, isBlackBelt);
+// valid to add a new item of same value
+names.push('toad');
 
-character = 'Luigi';
-age = 40;
-isBlackBelt = true;
+// illegal to add a new item of different item
+// names.push(3);
 
-console.log(character, age, isBlackBelt);
+// also illegal if trying to assign directly on position
+// names[0] = 2345;
 
-// typing parameters of functions
-const circ = (diameter: number) => diameter * Math.PI
+console.log(names);
 
-console.log(circ(100));
+// we can have mixed types if declared like that
+let mixed = ['ken', 4, true, {key: 'value'}];
+console.log(mixed);
+
+// OBJECTS
+let ninja = {
+    name: 'mario',
+    belt: 'black',
+    age: 30,
+};
+
+console.log(ninja);
+
+// invalid. type of properties can't change
+// ninja.age = '35';
+
+// invalid. can't add a new propery
+// ninja.properties = ['fighting', 'sneaking'];
+
+// invalid. can't remove/add new properties because it
+// doesn't match the first defined structure
+ninja = {
+    name: 'yoshi',
+    belt: 'orange',
+    age: 40,
+    // properties: ['fighting', 'sneaking'],
+};
