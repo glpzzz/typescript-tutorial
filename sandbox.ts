@@ -1,43 +1,42 @@
-// ARRAYS
-let names = ['luigi', 'mario', 'yoshi'];
+// explicit types
+let character: string;
+let age: number;
+let isLoggedIn: boolean;
 
-console.log(names);
+// illegal. 5 is not string
+// character = 5;
 
-// valid to add a new item of same value
-names.push('toad');
+// legal. 'Mario' is a string
+character = 'Mario';
 
-// illegal to add a new item of different item
-// names.push(3);
+// arrays. need to initialize empty to be able to use
+// push later
+let ninjas: string[] = [];
+console.log(ninjas);
 
-// also illegal if trying to assign directly on position
-// names[0] = 2345;
+// illegal. 5 is not string
+// ninjas.push(5);
 
-console.log(names);
+// legal
+ninjas.push('Mario');
+console.log(ninjas);
 
-// we can have mixed types if declared like that
-let mixed = ['ken', 4, true, {key: 'value'}];
+// union types. to instruct that a variable can be assigned values
+// several types.
+let mixed: (string | number | boolean)[] = [];
+mixed.push('Luigi');
+mixed.push(30);
+mixed.push(false);
 console.log(mixed);
 
-// OBJECTS
-let ninja = {
-    name: 'mario',
-    belt: 'black',
-    age: 30,
-};
+// in variables, () is not required
+let uid: string | number;
 
-console.log(ninja);
+// objects
+let ninjaOne: object;
+ninjaOne = {name: 'yoshi', age: 30};
 
-// invalid. type of properties can't change
-// ninja.age = '35';
-
-// invalid. can't add a new propery
-// ninja.properties = ['fighting', 'sneaking'];
-
-// invalid. can't remove/add new properties because it
-// doesn't match the first defined structure
-ninja = {
-    name: 'yoshi',
-    belt: 'orange',
-    age: 40,
-    // properties: ['fighting', 'sneaking'],
-};
+// object with defined properties
+let ninjaTwo: { name: string, age: number, belt: string };
+// illegal, skills wasn't defined as a property
+// ninjaTwo.skills = ['asdf'];
