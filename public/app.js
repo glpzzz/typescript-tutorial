@@ -17,14 +17,15 @@ form.addEventListener('submit', (e) => {
         fToFrom.value, fDetails.value, fAmount.valueAsNumber,
     ];
     let doc;
-    if (fType.value === 'invoice') {
-        doc = new Invoice(...values);
-    }
-    else if (fType.value === 'payment') {
-        doc = new Payment(...values);
-    }
-    else {
-        throw new Error('Type not implemented');
+    switch (fType.value) {
+        case 'invoice':
+            doc = new Invoice(...values);
+            break;
+        case 'payment':
+            doc = new Payment(...values);
+            break;
+        default:
+            throw new Error('Type not implemented');
     }
     list.render(doc, fType.value, 'end');
 });
